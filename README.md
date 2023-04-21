@@ -6,6 +6,8 @@ put in definConfig in vite.config.ts
         port: 3000,
     },
 ```
+UI - Charka UI
+npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
 
 
 
