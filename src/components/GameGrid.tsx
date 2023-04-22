@@ -7,29 +7,28 @@ import GameCardContainer from './GameCardContainer';
 
 const GameGrid = () => {
     const { entities: games, error, isLoading } = useGames();
-    const skeletons = Array.from({ length: games.length }, (_v, k) => k + 1);
+    const skeletons = Array.from({ length: 5 }, (_v, k) => k + 1);
+
+    if (error) return <Text>{error}</Text>;
 
     return (
-        <>
-            {error && <Text>{error}</Text>}
-            <SimpleGrid
-                columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
-                gap={10}
-                padding="10px"
-            >
-                {isLoading
-                    ? skeletons.map((skeleton) => (
-                          <GameCardContainer key={skeleton}>
-                              <GameCardSkeleton />
-                          </GameCardContainer>
-                      ))
-                    : games.map((game) => (
-                          <GameCardContainer key={game.id}>
-                              <GameCard game={game} />
-                          </GameCardContainer>
-                      ))}
-            </SimpleGrid>
-        </>
+        <SimpleGrid
+            columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+            gap={3}
+            padding="10px"
+        >
+            {isLoading
+                ? skeletons.map((skeleton) => (
+                      <GameCardContainer key={skeleton}>
+                          <GameCardSkeleton />
+                      </GameCardContainer>
+                  ))
+                : games.map((game) => (
+                      <GameCardContainer key={game.id}>
+                          <GameCard game={game} />
+                      </GameCardContainer>
+                  ))}
+        </SimpleGrid>
     );
 };
 

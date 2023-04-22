@@ -15,21 +15,25 @@ const useEntities = <T>(endpoint: string) => {
         function () {
             const controller = new AbortController();
 
-            api.get<Response<T>>(endpoint, { signal: controller.signal })
-                .then(function (response) {
-                    setEntities(response.data.results);
-                    setError('');
-                })
-                .catch(function (error) {
-                    if (!(error instanceof CanceledError)) {
-                        const errorMessage =
-                            error instanceof Error
-                                ? error.message
-                                : 'Unknown error';
-                        setError(errorMessage);
-                    }
-                })
-                .finally(() => setIsLoading(false));
+            const fetchEntities = () => {
+                api.get<Response<T>>(endpoint, { signal: controller.signal })
+                    .then(function (response) {
+                        setEntities(response.data.results);
+                        setError('');
+                    })
+                    .catch(function (error) {
+                        if (!(error instanceof CanceledError)) {
+                            const errorMessage =
+                                error instanceof Error
+                                    ? error.message
+                                    : 'Unknown error';
+                            setError(errorMessage);
+                        }
+                    })
+                    .finally(() => setIsLoading(false));
+            };
+
+            setTimeout(fetchEntities, 500);
 
             return function () {
                 controller.abort();
