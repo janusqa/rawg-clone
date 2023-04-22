@@ -41,9 +41,8 @@ const useGames = () => {
                             : 'Unknown error';
                     setError(errorMessage);
                 }
-                // setIsLoading(false);
-            });
-        // .finally(() => setIsLoading(false));
+            })
+            .finally(() => setIsLoading(false));
 
         return function () {
             controller.abort();
