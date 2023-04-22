@@ -23,6 +23,7 @@ interface FetchGamesResponse {
 const useGames = () => {
     const [games, setGames] = useState<Game[]>([]);
     const [error, setError] = useState<string>('');
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(function () {
         const controller = new AbortController();
@@ -40,14 +41,16 @@ const useGames = () => {
                             : 'Unknown error';
                     setError(errorMessage);
                 }
+                // setIsLoading(false);
             });
+        // .finally(() => setIsLoading(false));
 
         return function () {
             controller.abort();
         };
     }, []);
 
-    return { games, error };
+    return { games, error, isLoading };
 };
 
 export default useGames;
