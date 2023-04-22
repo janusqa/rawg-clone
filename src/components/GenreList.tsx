@@ -1,7 +1,7 @@
 import useGenres from '../hooks/useGenres';
 
 const GenreList = () => {
-    const { genres } = useGenres();
+    const { entities: genres } = useGenres();
 
     return (
         <ul>

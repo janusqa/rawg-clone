@@ -14,10 +14,6 @@ export interface Game {
     metacritic: number;
 }
 
-const useGames = () => {
-    const { entities: games, error, isLoading } = useEntities<Game>('/games');
-
-    return { games, error, isLoading };
-};
+const useGames = () => useEntities<Game>('/games');
 
 export default useGames;

@@ -5,14 +5,6 @@ interface Genre {
     name: string;
 }
 
-const useGenres = () => {
-    const {
-        entities: genres,
-        error,
-        isLoading,
-    } = useEntities<Genre>('/genres');
-
-    return { genres, error, isLoading };
-};
+const useGenres = () => useEntities<Genre>('/genres');
 
 export default useGenres;
