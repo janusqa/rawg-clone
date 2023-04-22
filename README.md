@@ -8,6 +8,8 @@ put in definConfig in vite.config.ts
 ```
 UI - Charka UI
 npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+npm i axios
+npm i react-icons
 
 
 
