@@ -11,29 +11,32 @@ const useEntities = <T>(endpoint: string) => {
     const [error, setError] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    useEffect(function () {
-        const controller = new AbortController();
+    useEffect(
+        function () {
+            const controller = new AbortController();
 
-        api.get<Response<T>>(endpoint, { signal: controller.signal })
-            .then(function (response) {
-                setEntities(response.data.results);
-                setError('');
-            })
-            .catch(function (error) {
-                if (!(error instanceof CanceledError)) {
-                    const errorMessage =
-                        error instanceof Error
-                            ? error.message
-                            : 'Unknown error';
-                    setError(errorMessage);
-                }
-            })
-            .finally(() => setIsLoading(false));
+            api.get<Response<T>>(endpoint, { signal: controller.signal })
+                .then(function (response) {
+                    setEntities(response.data.results);
+                    setError('');
+                })
+                .catch(function (error) {
+                    if (!(error instanceof CanceledError)) {
+                        const errorMessage =
+                            error instanceof Error
+                                ? error.message
+                                : 'Unknown error';
+                        setError(errorMessage);
+                    }
+                })
+                .finally(() => setIsLoading(false));
 
-        return function () {
-            controller.abort();
-        };
-    }, []);
+            return function () {
+                controller.abort();
+            };
+        },
+        [endpoint]
+    );
 
     return { entities, error, isLoading };
 };
