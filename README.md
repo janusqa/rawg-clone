@@ -15,5 +15,3 @@ put in definConfig in vite.config.ts
 # Deploy
 - npm run build  
   - output is in /dist
-
-test
