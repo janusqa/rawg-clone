@@ -1,4 +1,8 @@
-import axios, { CanceledError, type AxiosRequestConfig } from 'axios';
+import axios, {
+    CanceledError,
+    type AxiosRequestConfig,
+    type AxiosInstance,
+} from 'axios';
 import { env } from '../config/env';
 
 const api = axios.create({
@@ -11,4 +15,4 @@ const api = axios.create({
 });
 
 export default api;
-export { CanceledError, AxiosRequestConfig };
+export { CanceledError, AxiosRequestConfig, AxiosInstance };

@@ -6,6 +6,6 @@ export interface Genre {
     image_background: string;
 }
 
-const useGenres = () => useEntities<Genre>('/genres');
+const useGenres = () => useEntities<Genre>({ url: '/genres' });
 
 export default useGenres;

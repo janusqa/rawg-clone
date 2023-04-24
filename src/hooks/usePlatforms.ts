@@ -6,6 +6,7 @@ export interface Platform {
     slug: string;
 }
 
-const usePlatforms = () => useEntities<Platform>('/platforms/lists/parents');
+const usePlatforms = () =>
+    useEntities<Platform>({ url: '/platforms/lists/parents' });
 
 export default usePlatforms;

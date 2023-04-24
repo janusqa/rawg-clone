@@ -12,13 +12,16 @@ export interface Game {
     genres: Genre[];
 }
 
-const useGames = (gameQuery: GameQuery) => {
-    let params = gameQuery.genre?.id ? `?genres=${gameQuery.genre.id}` : '';
-    params += gameQuery.platform?.id
-        ? `${params.length === 0 ? '?' : '&'}platforms=${gameQuery.platform.id}`
-        : '';
-
-    return useEntities<Game>('/games' + params);
-};
+const useGames = (gameQuery: GameQuery) =>
+    useEntities<Game>(
+        {
+            url: '/games',
+            params: {
+                genres: gameQuery.genre?.id,
+                parent_platforms: gameQuery.platform?.id,
+            },
+        },
+        [gameQuery.genre?.id, gameQuery.platform?.id]
+    );
 
 export default useGames;
