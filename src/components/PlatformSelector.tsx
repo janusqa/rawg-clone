@@ -5,7 +5,7 @@ import { type Platform } from '../hooks/usePlatforms';
 
 interface Props {
     selectedPlatform: Platform | null;
-    onSelectPlatform: (platform: Platform) => void;
+    onSelectPlatform: (platform: Platform | null) => void;
 }
 
 const PlatformSelector = ({ selectedPlatform, onSelectPlatform }: Props) => {
@@ -19,6 +19,9 @@ const PlatformSelector = ({ selectedPlatform, onSelectPlatform }: Props) => {
                 {selectedPlatform?.name ?? 'Platforms'}
             </MenuButton>
             <MenuList>
+                <MenuItem onClick={() => onSelectPlatform(null)}>
+                    Platforms
+                </MenuItem>
                 {platforms.map((platform) => (
                     <MenuItem
                         key={platform.id}
