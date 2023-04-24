@@ -16,7 +16,9 @@ const useEntities = <T>(endpoint: string) => {
             const controller = new AbortController();
 
             const fetchEntities = () => {
-                api.get<Response<T>>(endpoint, { signal: controller.signal })
+                api.get<Response<T>>(endpoint, {
+                    signal: controller.signal,
+                })
                     .then(function (response) {
                         setEntities(response.data.results);
                         setError('');

@@ -4,9 +4,14 @@ import useGames from '../hooks/useGames';
 import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
+import { type Genre } from '../hooks/useGenres';
 
-const GameGrid = () => {
-    const { entities: games, error, isLoading } = useGames();
+interface Props {
+    selectedGenre: Genre | null;
+}
+
+const GameGrid = ({ selectedGenre }: Props) => {
+    const { entities: games, error, isLoading } = useGames(selectedGenre);
     const skeletons = Array.from({ length: 5 }, (_v, k) => k + 1);
 
     if (error) return <Text>{error}</Text>;

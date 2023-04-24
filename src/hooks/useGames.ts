@@ -1,4 +1,5 @@
 import useEntities from './useEntities';
+import { type Genre } from './useGenres';
 
 export interface Platform {
     id: number;
@@ -12,8 +13,12 @@ export interface Game {
     background_image: string;
     parent_platforms: { platform: Platform }[];
     metacritic: number;
+    genres: Genre[];
 }
 
-const useGames = () => useEntities<Game>('/games');
+const useGames = (selectedGenre: Genre | null) => {
+    const params = `?genres=${selectedGenre?.id}`;
+    return useEntities<Game>('/games' + params);
+};
 
 export default useGames;
