@@ -1,3 +1,4 @@
+import { GameQuery } from '../App';
 import useEntities from './useEntities';
 import { type Genre } from './useGenres';
 import { type Platform } from './usePlatforms';
@@ -11,13 +12,10 @@ export interface Game {
     genres: Genre[];
 }
 
-const useGames = (
-    selectedGenre: Genre | null,
-    selectedPlatform: Platform | null
-) => {
-    let params = selectedGenre?.id ? `?genres=${selectedGenre.id}` : '';
-    params += selectedPlatform?.id
-        ? `${params.length === 0 ? '?' : '&'}platforms=${selectedPlatform.id}`
+const useGames = (gameQuery: GameQuery) => {
+    let params = gameQuery.genre?.id ? `?genres=${gameQuery.genre.id}` : '';
+    params += gameQuery.platform?.id
+        ? `${params.length === 0 ? '?' : '&'}platforms=${gameQuery.platform.id}`
         : '';
 
     return useEntities<Game>('/games' + params);
