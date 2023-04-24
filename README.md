@@ -13,4 +13,5 @@ put in definConfig in vite.config.ts
 
 
 # Deploy
-npm run build  <!-- // output is in /dist -->
+- npm run build  
+  - output is in /dist
