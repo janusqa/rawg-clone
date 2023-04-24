@@ -17,7 +17,7 @@ export interface Game {
 }
 
 const useGames = (selectedGenre: Genre | null) => {
-    const params = `?genres=${selectedGenre?.id}`;
+    const params = selectedGenre?.id ? `?genres=${selectedGenre.id}` : '';
     return useEntities<Game>('/games' + params);
 };
 
