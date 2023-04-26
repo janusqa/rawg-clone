@@ -1,8 +1,11 @@
 import api, { AxiosRequestConfig } from './api';
 
 export interface RawgQueryResponse<T> {
+    // this response interface is dependant on the api
     count: number;
     results: T[];
+    next: string | null;
+    prev: string | null;
 }
 
 // we have placed generic T in class declaration
