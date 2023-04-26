@@ -3,9 +3,9 @@ import { Box, Flex, Grid, GridItem, Show } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
 import GenreList from './components/GenreList';
-import { type Genre } from './hooks/useGenres';
+import { type Genre } from './services/GenreService';
+import { type Platform } from './services/PlatformService';
 import PlatformSelector from './components/PlatformSelector';
-import { type Platform } from './hooks/usePlatforms';
 import SortSelector from './components/SortSelector';
 import GameHeading from './components/GameHeading';
 

@@ -1,35 +1,27 @@
-import { GameQuery } from '../App';
-import useEntities from './useEntities';
-import { type Genre } from './useGenres';
-import { type Platform } from './usePlatforms';
+import { useQuery } from '@tanstack/react-query';
 
-export interface Game {
-    id: number;
-    name: string;
-    background_image: string;
-    parent_platforms: { platform: Platform }[];
-    metacritic: number;
-    genres: Genre[];
-    rating_top: number;
-}
+import { type GameQuery } from '../App';
+import { type RawgQueryResponse } from '../services/ApiClient';
+import { type Game } from '../services/GameService';
+import GameService from '../services/GameService';
 
-const useGames = (gameQuery: GameQuery) =>
-    useEntities<Game>(
-        {
-            url: '/games',
-            params: {
-                genres: gameQuery.genre?.id,
-                parent_platforms: gameQuery.platform?.id,
-                ordering: gameQuery.sortOrder,
-                search: gameQuery.searchTerms,
-            },
+const CACHE_KEY_GAMES = ['games'];
+
+const useGames = (gameQuery: GameQuery) => {
+    const config = {
+        params: {
+            genres: gameQuery.genre?.id,
+            parent_platforms: gameQuery.platform?.id,
+            ordering: gameQuery.sortOrder,
+            search: gameQuery.searchTerms,
         },
-        [
-            gameQuery.genre?.id,
-            gameQuery.platform?.id,
-            gameQuery.sortOrder,
-            gameQuery.searchTerms,
-        ]
-    );
+    };
+
+    return useQuery<RawgQueryResponse<Game>, Error>({
+        queryKey: [...CACHE_KEY_GAMES, gameQuery],
+        queryFn: GameService.getAll(config).request,
+        staleTime: 1000 * 60 * 60, // 24h / ms * s * m * h where 1000ms = 1s
+    });
+};
 
 export default useGames;
