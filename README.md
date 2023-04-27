@@ -14,6 +14,12 @@ put in definConfig in vite.config.ts
 # Infinite scroll
 - npm i react-infinite-scrool-component
 
+# Calulating times
+- npm i ms
+- npm i -D @types/ms
+- import ms from 'ms'
+- const oneDayInMs = ms('24')
+
 
 # Deploy
 - npm run build  
