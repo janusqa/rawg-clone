@@ -11,8 +11,8 @@ const useGames = (gameQuery: GameQuery) => {
     const fetchData = (pageParam: number) => {
         const config = {
             params: {
-                genres: gameQuery.genre?.id,
-                parent_platforms: gameQuery.platform?.id,
+                genres: gameQuery.genreId,
+                parent_platforms: gameQuery.platformId,
                 ordering: gameQuery.sortOrder,
                 search: gameQuery.searchTerms,
                 page_size: gameQuery.pageSize ?? DEFAULT_GAME_PAGE_SIZE,

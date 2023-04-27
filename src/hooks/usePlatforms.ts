@@ -14,6 +14,8 @@ const usePlatforms = () => {
         initialData: {
             results: initialData,
             count: initialData.length,
+            next: null,
+            prev: null,
         },
     });
 };
