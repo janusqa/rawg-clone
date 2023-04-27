@@ -5,7 +5,7 @@ export interface RawgQueryResponse<T> {
     count: number;
     results: T[];
     next: string | null;
-    prev: string | null;
+    previous: string | null;
 }
 
 // we have placed generic T in class declaration
