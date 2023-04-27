@@ -2,6 +2,8 @@ import create from './ApiClient';
 import { type Genre } from './GenreService';
 import { type Platform } from './PlatformService';
 
+export const DEFAULT_GAME_PAGE_SIZE = 12;
+
 export interface Game {
     id: number;
     name: string;

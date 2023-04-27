@@ -2,7 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { type GameQuery } from '../App';
 import { type RawgQueryResponse } from '../services/ApiClient';
-import { type Game } from '../services/GameService';
+import { type Game, DEFAULT_GAME_PAGE_SIZE } from '../services/GameService';
 import GameService from '../services/GameService';
 
 const CACHE_KEY_GAMES = ['games'];
@@ -15,10 +15,7 @@ const useGames = (gameQuery: GameQuery) => {
                 parent_platforms: gameQuery.platform?.id,
                 ordering: gameQuery.sortOrder,
                 search: gameQuery.searchTerms,
-                // page_size: gameQuery.pageSize ?? 10,
-                // get page() {
-                //     return (pageParam - 1) * this.page_size;
-                // },
+                page_size: gameQuery.pageSize ?? DEFAULT_GAME_PAGE_SIZE,
                 page: pageParam,
             },
         };
@@ -30,7 +27,7 @@ const useGames = (gameQuery: GameQuery) => {
         queryKey: [...CACHE_KEY_GAMES, gameQuery],
         queryFn: ({ pageParam = 1 }) => fetchData(pageParam),
         keepPreviousData: true,
-        staleTime: 1000 * 60 * 60, // 24h / ms * s * m * h where 1000ms = 1s
+        staleTime: 1000 * 60 * 60, // 1h / ms * s * m * h where 1000ms = 1s
 
         getNextPageParam: (lastPage, allPages) => {
             // lastpage is the last set of results returned by the api

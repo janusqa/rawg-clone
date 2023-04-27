@@ -11,6 +11,9 @@ put in definConfig in vite.config.ts
 - npm i axios
 - npm i react-icons
 
+# Infinite scroll
+- npm i react-infinite-scrool-component
+
 
 # Deploy
 - npm run build  

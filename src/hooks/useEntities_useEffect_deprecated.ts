@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import api, { CanceledError, AxiosRequestConfig } from '../services/api';
+import api, { AxiosRequestConfig } from '../services/api';
 
 interface Response<T> {
     count: number;
@@ -24,7 +24,7 @@ const useEntities = <T>(requestConfig: AxiosRequestConfig, deps?: any[]) => {
                     setError('');
                 })
                 .catch(function (error) {
-                    if (!(error instanceof CanceledError)) {
+                    if (!controller.signal.aborted) {
                         const errorMessage =
                             error instanceof Error
                                 ? error.message
