@@ -13,14 +13,11 @@ import useGames from '../hooks/useGames';
 import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
-import { type GameQuery } from '../App';
-import { DEFAULT_GAME_PAGE_SIZE } from '../services/GameService';
+import useGameQueryStore from '../store';
 
-interface Props {
-    gameQuery: GameQuery;
-}
+const GameGrid = () => {
+    const pageSize = useGameQueryStore((s) => s.gameQuery.pageSize);
 
-const GameGrid = ({ gameQuery }: Props) => {
     const {
         data,
         error,
@@ -28,12 +25,9 @@ const GameGrid = ({ gameQuery }: Props) => {
         isLoading,
         hasNextPage,
         isFetchingNextPage,
-    } = useGames(gameQuery);
+    } = useGames();
 
-    const skeletons = Array.from(
-        { length: DEFAULT_GAME_PAGE_SIZE },
-        (_v, k) => k + 1
-    );
+    const skeletons = Array.from({ length: pageSize }, (_v, k) => k + 1);
 
     const intObserver = useRef<IntersectionObserver | null>(null);
     const lastRef = useCallback(

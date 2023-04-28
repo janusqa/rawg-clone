@@ -1,13 +1,14 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { type GameQuery } from '../App';
 import { type RawgQueryResponse } from '../services/ApiClient';
-import { type Game, DEFAULT_GAME_PAGE_SIZE } from '../services/GameService';
+import { type Game } from '../services/GameService';
 import GameService from '../services/GameService';
+import useGameQueryStore from '../store';
 
 const CACHE_KEY_GAMES = ['games'];
 
-const useGames = (gameQuery: GameQuery) => {
+const useGames = () => {
+    const gameQuery = useGameQueryStore((s) => s.gameQuery);
     const fetchData = (pageParam: number) => {
         const config = {
             params: {
@@ -15,7 +16,7 @@ const useGames = (gameQuery: GameQuery) => {
                 parent_platforms: gameQuery.platformId,
                 ordering: gameQuery.sortOrder,
                 search: gameQuery.searchTerms,
-                page_size: gameQuery.pageSize ?? DEFAULT_GAME_PAGE_SIZE,
+                page_size: gameQuery.pageSize,
                 page: pageParam,
             },
         };
