@@ -1,6 +1,7 @@
 import create from './ApiClient';
 import { type Genre } from './GenreService';
 import { type Platform } from './PlatformService';
+import { type Publisher } from './PublisherService';
 
 export interface Game {
     id: number;
@@ -8,6 +9,7 @@ export interface Game {
     name: string;
     background_image: string;
     parent_platforms: { platform: Platform }[];
+    publishers: Publisher[];
     metacritic: number;
     genres: Genre[];
     rating_top: number;
