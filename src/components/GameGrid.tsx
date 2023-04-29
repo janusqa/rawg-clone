@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react';
 
-import { Box, Center, SimpleGrid, Spinner, Text } from '@chakra-ui/react';
+import { Box, Center, SimpleGrid, Spinner } from '@chakra-ui/react';
 
 import useGames from '../hooks/useGames';
 import GameCard from './GameCard';
