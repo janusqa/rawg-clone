@@ -1,7 +1,11 @@
 import create from './ApiClient';
 import { type Genre } from './GenreService';
 import { type Platform } from './PlatformService';
-import { type Publisher } from './PublisherService';
+
+export interface Publisher {
+    id: number;
+    name: string;
+}
 
 export interface Game {
     id: number;

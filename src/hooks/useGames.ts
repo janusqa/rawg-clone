@@ -1,8 +1,10 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { type RawgQueryResponse } from '../services/ApiClient';
-import { type Game, CACHE_KEY_GAMES } from '../services/GameService';
-import GameService from '../services/GameService';
+import GameService, {
+    type Game,
+    CACHE_KEY_GAMES,
+} from '../services/GameService';
 import useGameQueryStore from '../store';
 
 const useGames = () => {
