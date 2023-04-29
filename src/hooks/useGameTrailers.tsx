@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { ENDPOINT_GAMES, CACHE_KEY_GAMES } from '../services/GameService';
 import GameTrailerService, {
-    GameTrailers,
+    type GameTrailers,
 } from '../services/GameTrailerService';
 import { RawgQueryResponse } from '../services/ApiClient';
 

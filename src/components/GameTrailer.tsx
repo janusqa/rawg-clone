@@ -1,4 +1,4 @@
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, Text } from '@chakra-ui/react';
 import useGameTrailers from '../hooks/useGameTrailers';
 
 interface Props {
@@ -16,7 +16,9 @@ const GameTrailer = ({ gameId }: Props) => {
 
     return trailer ? (
         <video src={trailer.data[480]} poster={trailer.preview} controls />
-    ) : null;
+    ) : (
+        <Text>No trailer availale</Text>
+    );
 };
 
 export default GameTrailer;
