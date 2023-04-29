@@ -6,4 +6,7 @@ export interface Genre {
     image_background: string;
 }
 
-export default create<Genre>('/genres');
+export const CACHE_KEY_GENRES = 'genres';
+export const ENDPOINT_GENRES = '/genres';
+
+export default create<Genre>(ENDPOINT_GENRES);

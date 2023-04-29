@@ -15,11 +15,26 @@ interface Props {
 const GameCardContainer = React.forwardRef(
     ({ children }: Props, ref: ForwardedRef<HTMLDivElement> | null) => {
         const container = ref ? (
-            <Box ref={ref} borderRadius={10} overflow="hidden">
+            <Box
+                ref={ref}
+                borderRadius={10}
+                overflow="hidden"
+                _hover={{
+                    transform: 'scale(1.03)',
+                    transition: 'transform .15s ease-in',
+                }}
+            >
                 {children}
             </Box>
         ) : (
-            <Box borderRadius={10} overflow="hidden">
+            <Box
+                borderRadius={10}
+                overflow="hidden"
+                _hover={{
+                    transform: 'scale(1.03)',
+                    transition: 'transform .15s ease-in',
+                }}
+            >
                 {children}
             </Box>
         );

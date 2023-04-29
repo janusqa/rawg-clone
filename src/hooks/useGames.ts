@@ -1,11 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { type RawgQueryResponse } from '../services/ApiClient';
-import { type Game } from '../services/GameService';
+import { type Game, CACHE_KEY_GAMES } from '../services/GameService';
 import GameService from '../services/GameService';
 import useGameQueryStore from '../store';
-
-const CACHE_KEY_GAMES = ['games'];
 
 const useGames = () => {
     const gameQuery = useGameQueryStore((s) => s.gameQuery);
@@ -25,7 +23,7 @@ const useGames = () => {
     };
 
     return useInfiniteQuery<RawgQueryResponse<Game>, Error>({
-        queryKey: [...CACHE_KEY_GAMES, gameQuery],
+        queryKey: [CACHE_KEY_GAMES, gameQuery],
         queryFn: ({ pageParam = 1 }) => fetchData(pageParam),
         keepPreviousData: true,
         staleTime: 1000 * 60 * 60, // 1h / ms * s * m * h where 1000ms = 1s

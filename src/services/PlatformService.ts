@@ -6,4 +6,7 @@ export interface Platform {
     slug: string;
 }
 
-export default create<Platform>('/platforms/lists/parents');
+export const CACHE_KEY_PLATFORMS = 'platforms';
+export const ENDPOINT_PLATFORMS = '/platforms/lists/parents';
+
+export default create<Platform>(ENDPOINT_PLATFORMS);

@@ -30,6 +30,19 @@ class ApiClient<T> {
         };
     }
 
+    get(config: AxiosRequestConfig = {}) {
+        const controller = new AbortController();
+        const response = api.request<T>({
+            url: 'this.endpoint',
+            signal: controller.signal,
+            ...config,
+        });
+        return {
+            request: () => response.then((res) => res.data),
+            cancel: () => controller.abort,
+        };
+    }
+
     post(config: AxiosRequestConfig<T> = {}) {
         const controller = new AbortController();
         const response = api.request<T>({
