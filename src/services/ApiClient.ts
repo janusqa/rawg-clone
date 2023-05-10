@@ -26,7 +26,7 @@ class ApiClient<T> {
         });
         return {
             request: () => response.then((res) => res.data),
-            cancel: () => controller.abort,
+            cancel: () => controller.abort(),
         };
     }
 
@@ -39,7 +39,7 @@ class ApiClient<T> {
         });
         return {
             request: () => response.then((res) => res.data),
-            cancel: () => controller.abort,
+            cancel: () => controller.abort(),
         };
     }
 
@@ -53,7 +53,7 @@ class ApiClient<T> {
         });
         return {
             request: () => response.then((res) => res.data),
-            cancel: () => controller.abort,
+            cancel: () => controller.abort(),
         };
     }
 }
